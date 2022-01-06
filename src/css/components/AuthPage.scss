@@ -1,0 +1,66 @@
+.App {
+  &--login, &--register, &--splash {
+    background-image: url("../../assets/mesh.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: var(--contrast-color);
+    gap: 0;
+  }
+
+  &--login, &--register {
+    .Header {
+      &-container {
+        border-bottom: none;
+        justify-content: center;
+      }
+
+      &-secondary {
+        display: none;
+      }
+    }
+  }
+
+  &--splash {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .Header, .Footer {
+      display: none;
+    }
+  }
+}
+
+.AuthPage {
+  > .Container {
+    max-width: 380px;
+    min-height: calc(100vh - var(--header-height));
+  }
+
+  .Page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+  }
+
+  &-content {
+    padding: 16px;
+    background: #ffffff3d;
+    backdrop-filter: blur(30px);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-high);
+  }
+
+  &-title-icon {
+    --size: 90px;
+    width: var(--size);
+    height: var(--size);
+    margin: 0 auto;
+    border-radius: 100%;
+    background: #ffffff38;
+    padding: 22px;
+  }
+}

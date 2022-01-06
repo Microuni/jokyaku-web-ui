@@ -1,0 +1,8 @@
+.btn {
+  color: var(--text-color);
+  border-radius: var(--border-radius);
+
+  &--full {
+    width: 100%;
+  }
+}

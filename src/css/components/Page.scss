@@ -1,0 +1,9 @@
+.Page {
+  height: 100%;
+
+  &-container {
+    display: flex;
+    gap: 48px;
+    height: 100%;
+  }
+}

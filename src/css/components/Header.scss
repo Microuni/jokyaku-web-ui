@@ -1,0 +1,21 @@
+.Header {
+  &-container {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--control-bg);
+  }
+
+  &-secondary {
+    margin-inline-start: auto;
+  }
+}
+
+.ActorButton {
+  gap: 8px;
+
+  &-avatar {
+    width: 30px;
+    height: auto;
+  }
+}

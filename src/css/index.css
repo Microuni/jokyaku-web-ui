@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "joshreset.css";
+@import "variables.scss";
+@import "scaffolding.scss";
+
+@import "components/Container.scss";
+@import "components/Header.scss";
+@import "components/Page.scss";
+@import "components/Sidebar.scss";
+
+@import "components/Button.scss";
+@import "components/Form.scss";
+
+@import "components/AuthPage.scss";

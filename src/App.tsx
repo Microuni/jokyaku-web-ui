@@ -1,25 +1,50 @@
+import { VechaiProvider } from '@vechaiui/react';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './App.scss';
+import Scaffolding from './js/components/layout/Scaffolding';
+import routes from './js/config/routes';
+import axios from './js/utils/axios';
+import SessionContext, { SessionType } from './js/utils/session';
 
 function App() {
+  const [session, setSession] = React.useState<SessionType>(React.useContext(SessionContext));
+
+  React.useEffect(() => {
+    if (session.isLoggedIn && !session.user) {
+      axios.get('/actor').then(response => {
+        setSession({
+          ...session,
+          user: response.data
+        });
+      });
+    }
+  }, [session]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SessionContext.Provider value={session}>
+      <VechaiProvider>
+        <BrowserRouter>
+          <Routes>
+
+            {Object.keys(routes).map((key: string, index: number) => {
+              let { element, ...attrs } = routes[key];
+
+              const Component = element(session);
+
+              return (
+                <Route element={(
+                  <Scaffolding>
+                    <Component />
+                  </Scaffolding>
+                )} key={index} {...attrs} />
+              );
+            })}
+
+          </Routes>
+        </BrowserRouter>
+      </VechaiProvider>
+    </SessionContext.Provider>
   );
 }
 
