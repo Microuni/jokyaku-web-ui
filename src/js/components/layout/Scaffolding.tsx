@@ -6,12 +6,16 @@ import SessionContext from '../../utils/session';
 import Footer from './Footer'
 import Header from './Header'
 
-function Scaffolding(props: React.HTMLProps<any>) {
+function Scaffolding(props: React.HTMLProps<any> & { splash?: boolean }) {
   const user = React.useContext(SessionContext);
   const routeName = getCurrentRouteName(useLocation(), user);
 
   return (
-    <div className={clsx('App', `App--${routeName}`)}>
+    <div className={clsx({
+      'App': true,
+      [`App--${routeName}`]: true,
+      'App--splash': props.splash
+    })}>
       <Header />
 
         {props.children}

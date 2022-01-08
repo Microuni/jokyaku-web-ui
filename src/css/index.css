@@ -5,6 +5,7 @@
 @import "joshreset.css";
 @import "variables.scss";
 @import "scaffolding.scss";
+@import "a11y.scss";
 
 @import "components/Container.scss";
 @import "components/Header.scss";
@@ -13,5 +14,7 @@
 
 @import "components/Button.scss";
 @import "components/Form.scss";
+@import "components/PlaceholderScreen.scss";
+@import "components/SubscriptionSelector.scss";
 
 @import "components/AuthPage.scss";

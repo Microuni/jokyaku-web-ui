@@ -1,0 +1,52 @@
+.SubscriptionSelector {
+  width: 70%;
+  margin-inline: auto;
+
+  &-item {
+    &:nth-child(1) {
+      --background-color: theme('backgroundColor.teal.100');
+      --color: theme('textColor.teal.600');
+      --b-radius: var(--border-radius) 0 0 var(--border-radius);
+    }
+
+    &:nth-child(2) {
+      --background-color: theme('backgroundColor.violet.100');
+      --color: theme('textColor.violet.600');
+      --b-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+  }
+
+  &-label {
+    background-color: var(--background-color);
+    color: var(--color);
+    display: block;
+    padding: 2rem;
+    border-bottom: 8px solid #00000010;
+    cursor: pointer;
+    transition: filter 0.2s, border 0.2s;
+    border-radius: var(--b-radius);
+    filter: brightness(0.95);
+
+    input[type="radio"]:checked + & {
+      border-color: currentColor;
+    }
+
+    &:hover, &:focus {
+      filter: brightness(1);
+    }
+  }
+
+  &-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+
+  &-title {
+    font-size: 1.1rem;
+  }
+
+  &-desc {
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+}

@@ -18,7 +18,7 @@ export type Route = {
 const routes: Record<string, Route> = {
   index: {
     path: '/',
-    element: (session) => session.isLoggedIn && !session.user ? Splash : (session.isLoggedIn ? Index : Login),
+    element: (session) => session.isLoggedIn ? Index : Login,
   },
 
   login: {
@@ -29,11 +29,6 @@ const routes: Record<string, Route> = {
   register: {
     path: '/register',
     element: () => Register,
-  },
-
-  splash: {
-    path: '/splash',
-    element: () => Splash,
   },
 
   home: {

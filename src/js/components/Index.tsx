@@ -1,11 +1,15 @@
+import { HomeIcon } from '@heroicons/react/outline'
 import React from 'react'
 import Page from './layout/Page'
+import PlaceholderScreen from './layout/PlaceholderScreen'
 
 function Index() {
   return (
     <Page className="Index" title="Home" sidebar={true}>
 
-      <h2>Welcome To Your Personal Jokyaku Space</h2>
+      <PlaceholderScreen
+        icon={<HomeIcon />}
+        title="Welcome To Your Personal Jokyaku Space"/>
 
     </Page>
   )
