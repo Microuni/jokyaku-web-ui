@@ -12,7 +12,7 @@ import SubscriptionType from '../models/Subscription'
 
 function Subscription() {
   const session = React.useContext(SessionContext);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(!session.user?.currentSubscription);
   const [subscriptions, setSubscriptions] = React.useState<SubscriptionType[]|null>(null);
   const [selectedSub, setSelectedSub] = React.useState<number>(0);
   const [currentRequest, setCurrentRequest] = React.useState<SubscriptionRequest|null|undefined>();
@@ -65,7 +65,18 @@ function Subscription() {
           {isLoading ? (
             <LoadingScreen />
           ) : (session.user?.currentSubscription ? (
-            <>So you have a sub huh</>
+            <PlaceholderScreen
+              icon={<StarIcon />}
+              title="You have an active subscription">
+              <div className="Subscription-activeSub">
+                <h4>{session.user.currentSubscription.subscription.name}</h4>
+                <p>{session.user.currentSubscription.subscription.reduction}% off</p>
+                <p>
+                  <strong>Expired at: </strong>
+                  {session.user.currentSubscription.expiresAt}
+                </p>
+              </div>
+            </PlaceholderScreen>
           ) : (currentRequest && !currentRequest.refused_at ? (
             <PlaceholderScreen
               icon={<DocumentTextIcon />}

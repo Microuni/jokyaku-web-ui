@@ -1,8 +1,9 @@
 import { extendTheme, VechaiProvider, colors } from '@vechaiui/react';
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.scss';
 import Scaffolding from './js/components/layout/Scaffolding';
+import ProtectedRoute from './js/components/ProtectedRoute';
 import Splash from './js/components/Splash';
 import routes from './js/config/routes';
 import axios from './js/utils/axios';
@@ -42,16 +43,24 @@ function App() {
             <Routes>
 
               {Object.keys(routes).map((key: string, index: number) => {
-                let { element, ...attrs } = routes[key];
+                let { element, auth, ...attrs } = routes[key];
 
                 const Component = element(session);
 
+                let innerElement = (
+                  <Scaffolding>
+                    <Component />
+                  </Scaffolding>
+                );
+
+                if (auth) {
+                  innerElement = (
+                    <ProtectedRoute>{innerElement}</ProtectedRoute>
+                  )
+                }
+
                 return (
-                  <Route element={(
-                    <Scaffolding>
-                      <Component />
-                    </Scaffolding>
-                  )} key={index} {...attrs} />
+                  <Route element={innerElement} key={index} {...attrs} />
                 );
               })}
 

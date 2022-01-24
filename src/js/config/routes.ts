@@ -13,6 +13,7 @@ export type Route = {
   path: string;
   element: (session: SessionType) => FunctionComponent<any>;
   index?: boolean;
+  auth?: boolean;
 };
 
 const routes: Record<string, Route> = {
@@ -34,21 +35,25 @@ const routes: Record<string, Route> = {
   home: {
     path: '/home',
     element: () => Index,
+    auth: true,
   },
 
   card: {
     path: '/card',
     element: () => Card,
+    auth: true,
   },
 
   subscription: {
     path: '/subscription',
     element: () => Subscription,
+    auth: true,
   },
 
   travels: {
     path: '/travels',
     element: () => TravelHistory,
+    auth: true,
   }
 };
 
