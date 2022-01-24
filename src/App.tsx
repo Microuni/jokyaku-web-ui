@@ -1,4 +1,4 @@
-import { extendTheme, VechaiProvider } from '@vechaiui/react';
+import { extendTheme, VechaiProvider, colors } from '@vechaiui/react';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
@@ -8,11 +8,17 @@ import routes from './js/config/routes';
 import axios from './js/utils/axios';
 import SessionContext, { SessionType } from './js/utils/session';
 
+const theme = extendTheme({
+  cursor: "pointer"
+});
+
 function App() {
   const [session, setSession] = React.useState<SessionType>(React.useContext(SessionContext));
 
+  const fetchingUser = session.isLoggedIn && !session.user;
+
   React.useEffect(() => {
-    if (session.isLoggedIn && !session.user) {
+    if (fetchingUser) {
       axios.get('/actor').then(response => {
         setTimeout(() => {
           setSession({
@@ -26,9 +32,9 @@ function App() {
 
   return (
     <SessionContext.Provider value={session}>
-      <VechaiProvider theme={extendTheme({cursor: "pointer"})}>
+      <VechaiProvider theme={theme}>
         <BrowserRouter>
-          {!session.user ? (
+          {fetchingUser ? (
             <Scaffolding splash={true}>
               <Splash />
             </Scaffolding>

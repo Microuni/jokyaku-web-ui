@@ -3,3 +3,25 @@
   flex-direction: column;
   gap: 16px;
 }
+
+.FormControl {
+  &--separator {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+    font-weight: bolder;
+    font-size: 0.95rem;
+
+    &::before, &::after {
+      content: "";
+      height: 1px;
+      background-color: var(--control-bg);
+    }
+  }
+
+  &--separator &-label {
+    padding: 4px 0;
+    background: transparent;
+  }
+}

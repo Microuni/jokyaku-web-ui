@@ -12,7 +12,7 @@ function AuthPage(props: AuthPageProps) {
     <Page className="AuthPage">
 
       <div className="AuthPage-title">
-        <div className="AuthPage-title-icon" aria-label={props.title}>{props.icon}</div>
+        {/* <div className="AuthPage-title-icon" aria-label={props.title}>{props.icon}</div> */}
       </div>
 
       <div className="AuthPage-content">

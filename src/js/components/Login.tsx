@@ -2,6 +2,7 @@ import { Button, FormControl, FormLabel, Input } from '@vechaiui/react'
 import { LoginIcon } from '@heroicons/react/solid'
 import React from 'react'
 import axios from '../utils/axios'
+import { useNavigate } from 'react-router-dom'
 import AuthPage from './layout/AuthPage'
 
 function doLogin(email: string, password: string) {
@@ -15,6 +16,7 @@ function doLogin(email: string, password: string) {
 }
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [loading, setLoading] = React.useState(false);
@@ -38,12 +40,22 @@ function Login() {
           <FormLabel>Password</FormLabel>
           <Input
             type="password"
-            placeholder="a very complex password"
             onChange={(e) => setPassword(e.target.value)} />
         </FormControl>
 
         <FormControl>
           <Button variant="light" loading={loading} className="btn--full">Login</Button>
+        </FormControl>
+
+        <FormControl className="FormControl--separator">
+          <span className="FormControl-label">OR</span>
+        </FormControl>
+
+        <FormControl>
+          <Button
+            onClick={() => navigate("/register")}
+            variant="solid"
+            className="btn--full">Sign Up</Button>
         </FormControl>
 
       </form>

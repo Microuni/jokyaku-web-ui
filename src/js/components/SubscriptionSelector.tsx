@@ -1,15 +1,15 @@
 import React from 'react'
-import { SubscriptionType } from './Subscription'
+import Subscription from '../models/Subscription'
 
 function SubscriptionSelector(props: {
-  choices: SubscriptionType[],
+  choices: Subscription[],
   onChange: (id: number) => void
 }) {
   return (
     <div className="SubscriptionSelector">
       <div className="SubscriptionSelector-container">
         {props.choices.map((item, index) => (
-          <div className="SubscriptionSelector-item">
+          <div className="SubscriptionSelector-item" key={index}>
             <input
               id={`subscription[${item.id}]`}
               value={item.id}
