@@ -38,12 +38,12 @@ function Register() {
 
           <FormControl id="firstName">
             <FormLabel>First Name</FormLabel>
-            <Input placeholder="foo@bar.baz" onChange={(e) => setFirstName(e.target.value)} />
+            <Input placeholder="Foo" onChange={(e) => setFirstName(e.target.value)} />
           </FormControl>
 
           <FormControl id="lastName">
             <FormLabel>Last Name</FormLabel>
-            <Input placeholder="foo@bar.baz" onChange={(e) => setLastName(e.target.value)} />
+            <Input placeholder="Bar" onChange={(e) => setLastName(e.target.value)} />
           </FormControl>
 
           <FormControl id="email">

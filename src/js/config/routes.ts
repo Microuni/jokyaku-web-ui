@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import Index from "../components/Index";
 import Login from "../components/Login";
 import Register from "../components/Register";
+import RfidReader from "../components/RfidReader";
 import Splash from "../components/Splash";
 import Subscription from "../components/Subscription";
 import TravelHistory from "../components/TravelHistory";
@@ -54,6 +55,13 @@ const routes: Record<string, Route> = {
     path: '/travels',
     element: () => TravelHistory,
     auth: true,
+  },
+
+  // a simulator page, since we didn't get the opportunity to work with actual equipement
+  rfid: {
+    path: '/rfid-reader',
+    element: () => RfidReader,
+    auth: false,
   }
 };
 

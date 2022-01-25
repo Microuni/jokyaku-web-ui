@@ -16,5 +16,6 @@
 @import "components/Form.scss";
 @import "components/PlaceholderScreen.scss";
 @import "components/SubscriptionSelector.scss";
+@import "components/RfidCard.scss";
 
 @import "components/AuthPage.scss";
