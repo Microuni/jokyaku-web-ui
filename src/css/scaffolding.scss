@@ -19,9 +19,10 @@ a {
 }
 
 .App {
+  --app-gap: 4rem;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: var(--app-gap);
 }
 
 h1, h2, h3, h4, h5, h6 {

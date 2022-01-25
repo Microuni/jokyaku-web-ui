@@ -44,7 +44,7 @@ function Login() {
         </FormControl>
 
         <FormControl>
-          <Button variant="light" loading={loading} className="btn--full">Login</Button>
+          <Button variant="outline" loading={loading} className="btn--full" color='primary'>Login</Button>
         </FormControl>
 
         <FormControl className="FormControl--separator">
@@ -55,7 +55,8 @@ function Login() {
           <Button
             onClick={() => navigate("/register")}
             variant="solid"
-            className="btn--full">Sign Up</Button>
+            className="btn--full"
+            color='primary'>Sign Up</Button>
         </FormControl>
 
       </form>

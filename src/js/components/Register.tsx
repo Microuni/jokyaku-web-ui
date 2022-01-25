@@ -66,7 +66,7 @@ function Register() {
           </FormControl>
 
           <FormControl>
-            <Button variant="light" loading={loading} className="btn--full">Register</Button>
+            <Button variant="outline" loading={loading} className="btn--full" color='primary'>Register</Button>
           </FormControl>
 
           <FormControl className="FormControl--separator">
@@ -77,7 +77,8 @@ function Register() {
             <Button
               onClick={() => navigate("/login")}
               variant="solid"
-              className="btn--full">Login</Button>
+              className="btn--full"
+              color='primary'>Login</Button>
           </FormControl>
 
         </form>
