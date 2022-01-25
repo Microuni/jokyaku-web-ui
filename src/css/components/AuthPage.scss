@@ -31,6 +31,11 @@
     .Header, .Footer {
       display: none;
     }
+
+    .Logo {
+      stroke-dasharray: 20;
+      animation: dash 14s linear forwards infinite;
+    }
   }
 }
 
@@ -110,5 +115,11 @@
   &-content {
     backdrop-filter: blur(2px);
     background: #ffffff12;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
   }
 }
