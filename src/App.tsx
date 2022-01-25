@@ -16,7 +16,7 @@ const theme = extendTheme({
 function App() {
   const [session, setSession] = React.useState<SessionType>(React.useContext(SessionContext));
 
-  const fetchingUser = session.isLoggedIn && !session.user;
+  const fetchingUser = false && session.isLoggedIn && !session.user;
 
   React.useEffect(() => {
     if (fetchingUser) {
