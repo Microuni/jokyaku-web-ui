@@ -10,7 +10,7 @@ import RfidCard from './RfidCard';
 
 function RfidReader() {
   const [simulate, setSimulate] = React.useState(false);
-  const [number, setNumber] = React.useState("09 65 41 23 45");
+  const [number, setNumber] = React.useState("051656541645");
   const [departedFrom, setDepartedFrom] = React.useState("Constantine")
   const [headedTo, setHeadedTo] = React.useState("Alger")
   const [fee, setFee] = React.useState(1350)
