@@ -14,7 +14,7 @@ export type Route = {
   path: string;
   element: (session: SessionType) => FunctionComponent<any>;
   index?: boolean;
-  auth?: boolean;
+  auth?: boolean | ((session: SessionType) => boolean);
 };
 
 const routes: Record<string, Route> = {
@@ -26,11 +26,13 @@ const routes: Record<string, Route> = {
   login: {
     path: '/login',
     element: () => Login,
+    auth: (session) => !session.isLoggedIn
   },
 
   register: {
     path: '/register',
     element: () => Register,
+    auth: (session) => !session.isLoggedIn
   },
 
   home: {
@@ -61,7 +63,6 @@ const routes: Record<string, Route> = {
   rfid: {
     path: '/rfid-reader',
     element: () => RfidReader,
-    auth: false,
   }
 };
 

@@ -54,8 +54,16 @@ function App() {
                 );
 
                 if (auth) {
+                  let actualAuth;
+
+                  if (auth === true) {
+                    actualAuth = (session: SessionType) => session.isLoggedIn
+                  } else {
+                    actualAuth = auth
+                  }
+
                   innerElement = (
-                    <ProtectedRoute>{innerElement}</ProtectedRoute>
+                    <ProtectedRoute auth={actualAuth}>{innerElement}</ProtectedRoute>
                   )
                 }
 
