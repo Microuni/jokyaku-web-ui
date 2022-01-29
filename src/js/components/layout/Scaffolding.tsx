@@ -16,10 +16,7 @@ function Scaffolding(props: React.HTMLProps<any> & { splash?: boolean }) {
       [`App--${routeName}`]: true,
       'App--splash': props.splash
     })}>
-      <Header />
-
-        {props.children}
-
+      {props.children}
       <Footer />
     </div>
   )

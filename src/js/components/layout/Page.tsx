@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import React from 'react'
 import Container from './Container'
+import Header from './Header';
 import Sidebar from './Sidebar';
 
 type PageProps = React.ComponentProps<any> | {
@@ -23,6 +24,7 @@ function Page(props: PageProps) {
         )}
 
         <div className="Page-content">
+          <Header />
           {title && (
             <div className="Page-content-header">
               <h2>{icon}{title}</h2>

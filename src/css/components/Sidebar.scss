@@ -1,7 +1,9 @@
 .Sidebar {
-  border-radius: var(--border-radius);
-  border-right: 1px solid var(--control-bg);
   padding: 16px;
+  position: relative;
+  --control-color: var(--highligh-control-color);
+  --control-bg: var(--highlight-color);
+  --text-color: var(--contrast-color);
 
   .btn {
     width: 100%;
@@ -72,5 +74,32 @@
         background-color: var(--control-bg);
       }
     }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 0;
+    width: 100vw;
+    min-height: 100vh;
+    background-image: url("../../assets/splash_bg.jpg");
+    opacity: 10%;
+    background-size: 100%;
+    background-position: center;
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 0;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: var(--highlight-color);
+    z-index: -2;
   }
 }

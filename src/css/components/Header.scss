@@ -9,6 +9,12 @@
   &-secondary {
     margin-inline-start: auto;
   }
+
+  &-title {
+    img {
+      height: 40px;
+    }
+  }
 }
 
 .ActorButton {
