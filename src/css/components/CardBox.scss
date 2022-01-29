@@ -1,0 +1,16 @@
+.CardBox {
+  display: flex;
+  gap: 32px;
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &-controls {
+    margin-top: auto;
+    display: flex;
+    gap: 8px;
+  }
+}

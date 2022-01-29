@@ -1,11 +1,12 @@
 import { CreditCardIcon, PlayIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/solid';
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import AuthPage from './layout/AuthPage';
 import reader from '../../assets/rfid-reader.png';
 import { Button, FormControl, FormLabel, Icon, Input, useMessage } from '@vechaiui/react';
 import clsx from 'clsx';
 import axios from '../utils/axios';
 import { Disclosure } from '@headlessui/react';
+import RfidCard from './RfidCard';
 
 function RfidReader() {
   const [simulate, setSimulate] = React.useState(false);
@@ -47,13 +48,10 @@ function RfidReader() {
 
       <div className="RfidSimulation">
 
-        <div className={clsx("RfidCard", simulate && "RfidCard--play")}>
-          <span
-            className="RfidCard-number"
-            contentEditable="true"
-            suppressContentEditableWarning={true}
-            onChange={(e: any) => setNumber(e.target.value)}>{number}</span>
-        </div>
+        <RfidCard
+          number={number}
+          simulate={simulate}
+          onInput={(e: any) => setNumber(e.target.textContent)}/>
 
         <div className="RfidReader">
           <img src={reader} />

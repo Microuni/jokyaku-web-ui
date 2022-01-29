@@ -1,7 +1,7 @@
 module.exports = {
   mode: "jit",
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}"
+    "./src/js/**/*.{js,jsx,ts,tsx}"
   ],
   purge: [
     "./node_modules/@vechaiui/**/*.{js,ts,jsx,tsx}",

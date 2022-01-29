@@ -8,9 +8,13 @@
   gap: 32px;
 
   &-icon {
-    --size: 8rem;
-    width: var(--size);
-    height: var(--size);
+    --size: 26rem;
+    max-width: var(--size);
+    height: auto;
+
+    .Spinner {
+      width: 80px;
+    }
 
     svg {
       height: 100%;

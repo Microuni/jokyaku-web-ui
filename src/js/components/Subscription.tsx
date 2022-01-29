@@ -9,6 +9,8 @@ import Page from './layout/Page'
 import PlaceholderScreen from './layout/PlaceholderScreen'
 import SubscriptionSelector from './SubscriptionSelector'
 import SubscriptionType from '../models/Subscription'
+import SubscriptionVector from './vectors/SubscriptionVector'
+import SubscriptionRequestVector from './vectors/SubscriptionRequestVector'
 
 function Subscription() {
   const session = React.useContext(SessionContext);
@@ -60,7 +62,7 @@ function Subscription() {
   return (
     <SessionContext.Consumer>
       {({ user }) => (
-        <Page title="Subscription" sidebar="true">
+        <Page title={session.user?.currentSubscription && "Subscription"} sidebar="true">
 
           {isLoading ? (
             <LoadingScreen />
@@ -79,7 +81,7 @@ function Subscription() {
             </PlaceholderScreen>
           ) : (currentRequest && !currentRequest.refused_at ? (
             <PlaceholderScreen
-              icon={<DocumentTextIcon />}
+              icon={<SubscriptionRequestVector />}
               title="You have a pending subscription request for:">
               <div className="Subscription-pendingRequest">
                 <h4 className="Subscription-pendingRequest-name">{currentRequestFor?.name}</h4>
@@ -92,7 +94,7 @@ function Subscription() {
             </PlaceholderScreen>
           ) : (
             <PlaceholderScreen
-              icon={<StarIcon />}
+              icon={<SubscriptionVector />}
               title="No subscriptions associated with your account. Choose one of the following:">
 
               <SubscriptionSelector

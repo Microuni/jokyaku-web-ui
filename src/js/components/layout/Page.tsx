@@ -12,18 +12,23 @@ type PageProps = React.ComponentProps<any> | {
 };
 
 function Page(props: PageProps) {
-  const { children, className, ...attrs } = props;
+  const { children, className, sidebar, title, icon, ...attrs } = props;
 
   return (
     <div className={clsx('Page', className)} {...attrs}>
       <Container className="Page-container">
 
-        {props.sidebar && (
+        {sidebar && (
           <Sidebar />
         )}
 
         <div className="Page-content">
-          {props.children}
+          {title && (
+            <div className="Page-content-header">
+              <h2>{icon}{title}</h2>
+            </div>
+          )}
+          <div className="Page-content-main">{props.children}</div>
         </div>
 
       </Container>

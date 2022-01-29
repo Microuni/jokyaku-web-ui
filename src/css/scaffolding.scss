@@ -36,3 +36,11 @@ h1 {
 h2 {
   font-size: theme('fontSize.4xl');
 }
+
+[stroke="#666AF6"] {
+  stroke: var(--highlight-color);
+}
+
+[fill="#666AF6"] {
+  fill: var(--highlight-color);
+}

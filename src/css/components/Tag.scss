@@ -1,0 +1,13 @@
+.Tag {
+  &--success {
+    background-color: theme('backgroundColor.green.100');
+    color: theme('textColor.green.700')
+  }
+}
+
+.tag {
+  > span {
+    display: flex;
+    gap: 4px
+  }
+}

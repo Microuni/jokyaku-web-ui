@@ -5,7 +5,7 @@ import PlaceholderScreen from './PlaceholderScreen'
 function LoadingScreen() {
   return (
     <PlaceholderScreen
-      icon={<Spinner />}
+      icon={<Spinner className="Spinner" />}
       title="Loading.."/>
   )
 }
