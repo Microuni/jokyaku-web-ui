@@ -2,13 +2,12 @@
   border-radius: var(--border-radius);
   border-right: 1px solid var(--control-bg);
   padding: 16px;
-  padding-right: 0;
 
   .btn {
     width: 100%;
     justify-content: start;
     gap: 16px;
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    border-radius: var(--border-radius);
 
     &-icon {
       width: 20px;
@@ -32,6 +31,36 @@
 
     ul {
       position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    &-item--active {
+      --button-hover-bg: var(--contrast-bg);
+
+      .btn {
+        background-color: var(--contrast-bg);
+        box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+
+        &, &-icon {
+          color: var(--contrast-color);
+        }
+      }
+    }
+
+    &-title {
+      color: var(--control-color);
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    &-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
 
       &:not(:last-child)::after {
         content: "";
@@ -41,18 +70,6 @@
         right: 0;
         bottom: calc(0px - var(--gap) / 2);
         background-color: var(--control-bg);
-      }
-    }
-
-    &-item--active {
-      --button-hover-bg: var(--contrast-bg);
-
-      .btn {
-        background-color: var(--contrast-bg);
-
-        &, &-icon {
-          color: var(--contrast-color);
-        }
       }
     }
   }

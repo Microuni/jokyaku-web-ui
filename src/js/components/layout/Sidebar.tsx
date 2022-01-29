@@ -1,25 +1,26 @@
-import { CreditCardIcon, HomeIcon, LogoutIcon, StarIcon, TicketIcon } from '@heroicons/react/outline'
+import { CreditCardIcon, HomeIcon, LogoutIcon, StarIcon, TicketIcon, UserIcon } from '@heroicons/react/outline'
+import { CreditCardIcon as SolidCreditCardIcon, StarIcon as SolidStarIcon } from '@heroicons/react/solid'
 import { Button } from '@vechaiui/react'
 import clsx from 'clsx'
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import routes, { getCurrentRouteName } from '../../config/routes'
-import SessionContext from '../../utils/session'
+import SessionContext, { SessionType } from '../../utils/session'
 
 type SidebarItem = {
   title: string
   icon: React.ReactElement
-};
-
-type NavItem = SidebarItem & {
-  route: string
+  route?: string
+  onClick?: () => void
 }
 
-type ActionItem = SidebarItem & {
-  onClick: () => void
+type SidebarItemGroup = {
+  title: string
+  items: SidebarItem[]
+  auth?: (session: SessionType) => boolean
 }
 
-const navItems: NavItem[] = [
+const navItems: SidebarItem[] = [
   {
     title: 'Home',
     icon: <HomeIcon />,
@@ -42,7 +43,25 @@ const navItems: NavItem[] = [
   },
 ]
 
-const actionItems = [
+const adminItems: SidebarItem[] = [
+  {
+    title: 'Card Requests',
+    icon: <SolidCreditCardIcon />,
+    route: 'card-requests'
+  },
+  {
+    title: 'Sub Requests',
+    icon: <SolidStarIcon />,
+    route: 'subscription-requests'
+  }
+]
+
+const actionItems: SidebarItem[] = [
+  {
+    title: 'Profile Info',
+    icon: <UserIcon />,
+    route: '/account'
+  },
   {
     title: 'Logout',
     icon: <LogoutIcon />,
@@ -53,14 +72,59 @@ const actionItems = [
   }
 ]
 
+const itemGroups: SidebarItemGroup[] = [
+  {
+    title: "User Space",
+    items: navItems
+  },
+  {
+    title: "Administration",
+    items: adminItems,
+    auth: (session: SessionType) => session.isLoggedIn && session.user!.id === 1 // @TODO implement roles and permissions
+  },
+  {
+    title: "Account",
+    items: actionItems
+  }
+]
+
 function Sidebar() {
+  const session = React.useContext(SessionContext)
   const currentRouteName = getCurrentRouteName(useLocation(), React.useContext(SessionContext));
   const navigate = useNavigate();
 
   return (
     <div className="Sidebar">
       <nav className="Sidebar-nav">
-        <ul className="Sidebar-nav-pages">
+        {itemGroups
+          .filter((group) => group.auth && group.auth(session) || !group.auth)
+          .map((group, index) => (
+          <div className="Sidebar-nav-group" key={index}>
+            <span className="Sidebar-nav-title">{group.title}</span>
+            <ul className="Sidebar-nav-items">
+              {group.items.map((item, index) => (
+                <li className={clsx({
+                  "Sidebar-nav-item": true,
+                  "Sidebar-nav-item--active": item.route && item.route === currentRouteName
+                })} key={index}>
+                  <Button
+                    onClick={item.route
+                      ? () => navigate(routes[item.route!].path)
+                      : item.onClick!}
+                    variant="ghost"
+                    leftIcon={(
+                      <span className="btn-icon">
+                        {item.icon}
+                      </span>
+                    )}>
+                    {item.title}
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        {/* <ul className="Sidebar-nav-pages">
           {navItems.map((item, index) => (
             <li className={clsx({
               "Sidebar-nav-item": true,
@@ -94,7 +158,7 @@ function Sidebar() {
               </Button>
            </li>
           ))}
-        </ul>
+        </ul> */}
       </nav>
     </div>
   )

@@ -1,16 +1,29 @@
 .CardBox {
-  display: flex;
+  display: grid;
+  grid-template-columns: 35% 1fr;
   gap: 32px;
+  background-color: var(--block-bg);
+  border-radius: var(--border-radius);
+  border-bottom: 1px solid var(--control-bg);
 
   &-content {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    padding: 16px;
   }
 
   &-controls {
     margin-top: auto;
     display: flex;
     gap: 8px;
+  }
+
+  &-card {
+    padding: 16px;
+
+    svg {
+      max-height: 150px;
+    }
   }
 }

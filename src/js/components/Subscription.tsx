@@ -11,6 +11,8 @@ import SubscriptionSelector from './SubscriptionSelector'
 import SubscriptionType from '../models/Subscription'
 import SubscriptionVector from './vectors/SubscriptionVector'
 import SubscriptionRequestVector from './vectors/SubscriptionRequestVector'
+import CardBox from './CardBox'
+import datetime from '../utils/datetime'
 
 function Subscription() {
   const session = React.useContext(SessionContext);
@@ -62,23 +64,25 @@ function Subscription() {
   return (
     <SessionContext.Consumer>
       {({ user }) => (
-        <Page title={session.user?.currentSubscription && "Subscription"} sidebar="true">
+        <Page
+          icon={session.user?.currentSubscription && <StarIcon />}
+          title={session.user?.currentSubscription && "Subscription"}
+          sidebar="true">
 
           {isLoading ? (
             <LoadingScreen />
           ) : (session.user?.currentSubscription ? (
-            <PlaceholderScreen
-              icon={<StarIcon />}
-              title="You have an active subscription">
-              <div className="Subscription-activeSub">
-                <h4>{session.user.currentSubscription.subscription.name}</h4>
-                <p>{session.user.currentSubscription.subscription.reduction}% off</p>
+            <CardBox
+              card={<SubscriptionVector />}
+              details={[
+                "You have an active subscription",
+                session.user.currentSubscription.subscription.name,
+                `${session.user.currentSubscription.subscription.reduction}% off`,
                 <p>
                   <strong>Expired at: </strong>
-                  {session.user.currentSubscription.expiresAt}
+                  {datetime(session.user.currentSubscription.expiresAt!)}
                 </p>
-              </div>
-            </PlaceholderScreen>
+              ]}/>
           ) : (currentRequest && !currentRequest.refused_at ? (
             <PlaceholderScreen
               icon={<SubscriptionRequestVector />}
@@ -88,7 +92,7 @@ function Subscription() {
                 <p className="Subscription-pendingRequest-desc">{currentRequestFor?.reduction}% Off</p>
                 <p className="Subscription-pendingRequest-requestedAt">
                   <strong>Requested: </strong>
-                  {currentRequest.requestedAt}
+                  {datetime(currentRequest.requestedAt)}
                 </p>
               </div>
             </PlaceholderScreen>

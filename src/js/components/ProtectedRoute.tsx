@@ -7,7 +7,7 @@ function ProtectedRoute({ children, auth }: { children: JSX.Element, auth?: (ses
   let location = useLocation();
 
   if (auth && ! auth(session)) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to={session.isLoggedIn ? "/home" : "/login"} state={{ from: location }} replace />;
   }
 
   return children;

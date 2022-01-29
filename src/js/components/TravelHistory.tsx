@@ -7,6 +7,7 @@ import axios from '../utils/axios';
 import LoadingScreen from './layout/LoadingScreen';
 import Page from './layout/Page'
 import PlaceholderScreen from './layout/PlaceholderScreen';
+import datetime from '../utils/datetime';
 
 function TravelHistory() {
   const [entries, setEntries] = React.useState<TravelEntry[]|null>(null)
@@ -45,13 +46,11 @@ function TravelHistory() {
           </thead>
           <tbody>
             {entries.map((e, index) => {
-              const datetime = new Date(e.departedAt);
-
               return (
                 <tr key={index}>
                   <td>{e.busNumber}</td>
                   <td>{e.routeNumber}</td>
-                  <td>{datetime.toLocaleDateString()} {datetime.toLocaleTimeString()}</td>
+                  <td>{datetime(e.departedAt)}</td>
                   <td>{e.departedFrom}</td>
                   <td>{e.headedTo}</td>
                   <td>
