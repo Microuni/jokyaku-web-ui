@@ -54,8 +54,8 @@ function TravelHistory() {
                   <td>{e.departedFrom}</td>
                   <td>{e.headedTo}</td>
                   <td>
-                    <Tag variant="light">
-                      <Tag.Label>{e.fee}</Tag.Label>
+                    <Tag variant="light" className="Tag--warning">
+                      <Tag.Label>{e.fee} DZD</Tag.Label>
                     </Tag>
                   </td>
                   <td>
@@ -69,8 +69,8 @@ function TravelHistory() {
                     )}
                   </td>
                   <td>
-                    <Tag variant="outline">
-                      <Tag.Label>{e.finalFee}</Tag.Label>
+                    <Tag variant="outline" className="Tag--error">
+                      <Tag.Label>- {e.finalFee} DZD</Tag.Label>
                     </Tag>
                   </td>
                 </tr>
