@@ -1,6 +1,7 @@
 import { ExclamationIcon, RefreshIcon } from '@heroicons/react/outline';
 import { CreditCardIcon, CheckIcon, XIcon } from '@heroicons/react/solid';
 import { IconButton, Tag, useMessage } from '@vechaiui/react';
+import Avatar from 'boring-avatars';
 import React from 'react';
 import CardRequest from '../models/CardRequest';
 import axios from '../utils/axios';
@@ -8,6 +9,7 @@ import datetime from '../utils/datetime';
 import LoadingScreen from './layout/LoadingScreen';
 import Page from './layout/Page';
 import PlaceholderScreen from './layout/PlaceholderScreen';
+import UserLink from './UserLink';
 import CardVector from './vectors/CardVector';
 
 function CardRequests() {
@@ -77,7 +79,9 @@ function CardRequests() {
                 return (
                   <tr key={index}>
                     <td>{e.id}</td>
-                    <td></td>
+                    <td>
+                      <UserLink user={e.user!} />
+                    </td>
                     <td>
                       <Tag variant="light">
                         <Tag.Label>{datetime(e.requestedAt)}</Tag.Label>
