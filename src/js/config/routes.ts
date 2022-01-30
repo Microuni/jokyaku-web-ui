@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import { Location } from "react-router-dom";
 import Card from "../components/Card";
+import CardRequests from "../components/CardRequests";
 import Index from "../components/Index";
 import Login from "../components/Login";
 import Register from "../components/Register";
@@ -63,6 +64,11 @@ const routes: Record<string, Route> = {
   rfid: {
     path: '/rfid-reader',
     element: () => RfidReader,
+  },
+
+  "card-requests": {
+    path: '/card-requests',
+    element: () => CardRequests
   }
 };
 

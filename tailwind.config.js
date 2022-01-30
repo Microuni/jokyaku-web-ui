@@ -1,20 +1,23 @@
+const colors = require("tailwindcss/colors")
+
 module.exports = {
-  mode: "jit",
   content: [
-    "./src/js/**/*.{js,jsx,ts,tsx}"
-  ],
-  purge: [
+    "./src/js/**/*.{js,jsx,ts,tsx}",
     "./node_modules/@vechaiui/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: "media",
   theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
+    extend: {
+      colors: {
+        positive: colors.emerald,
+        warning: colors.orange,
+        danger: colors.red,
+      }
+    }
   },
   plugins: [
     require("@tailwindcss/forms"),
-    require("@vechaiui/core"),
+    require("@vechaiui/core")({
+      colors: ['positive', 'warning', 'danger']
+    }),
   ],
 };

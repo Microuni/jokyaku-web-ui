@@ -21,3 +21,10 @@ tr {
     border-bottom: 1px solid var(--control-bg);
   }
 }
+
+.Table {
+  &-controls {
+    display: flex;
+    gap: 4px;
+  }
+}

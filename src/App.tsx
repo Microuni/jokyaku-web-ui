@@ -9,6 +9,7 @@ import routes from './js/config/routes';
 import axios from './js/utils/axios';
 import SessionContext, { SessionType } from './js/utils/session';
 
+
 const theme = extendTheme({
   cursor: "pointer"
 });
@@ -29,11 +30,11 @@ function App() {
         }, 1000)
       });
     }
-  }, [session]);
+  }, [session, fetchingUser]);
 
   return (
     <SessionContext.Provider value={session}>
-      <VechaiProvider theme={theme}>
+      <VechaiProvider theme={theme} colorScheme='dark'>
         <BrowserRouter>
           {fetchingUser ? (
             <Scaffolding splash={true}>

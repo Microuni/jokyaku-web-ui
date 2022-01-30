@@ -13,8 +13,8 @@ function CardBox(props: CardBoxProps) {
       <div className="CardBox-content">
         {props.details && (
           <ul className="CardBox-details">
-            {props.details.map(d => (
-              <li>{d}</li>
+            {props.details.map((d, index) => (
+              <li key={index}>{d}</li>
             ))}
           </ul>
         )}
