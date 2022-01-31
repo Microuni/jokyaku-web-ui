@@ -57,10 +57,6 @@ function Subscription() {
 
   let currentRequestFor: SubscriptionType|undefined;
 
-  if (! isLoading && currentRequest) {
-    currentRequestFor = subscriptions?.filter(s => s.id === currentRequest.subscriptionId)[0];
-  }
-
   return (
     <SessionContext.Consumer>
       {({ user }) => (
@@ -88,8 +84,8 @@ function Subscription() {
               icon={<SubscriptionRequestVector />}
               title="You have a pending subscription request for:">
               <div className="Subscription-pendingRequest">
-                <h4 className="Subscription-pendingRequest-name">{currentRequestFor?.name}</h4>
-                <p className="Subscription-pendingRequest-desc">{currentRequestFor?.reduction}% Off</p>
+                <h4 className="Subscription-pendingRequest-name">{currentRequest.subscription!.name}</h4>
+                <p className="Subscription-pendingRequest-desc">{currentRequest.subscription!.reduction}% Off</p>
                 <p className="Subscription-pendingRequest-requestedAt">
                   <strong>Requested: </strong>
                   {datetime(currentRequest.requestedAt)}
@@ -112,8 +108,8 @@ function Subscription() {
                   setIsLoading(true);
                   axios.post('/passengers-service/subscription-requests', {
                     subscriptionId: selectedSub
-                  }).then(() => {
-
+                  }).then((response) => {
+                    setCurrentRequest(response.data)
                     setIsLoading(false);
                   })
                 }}>Request Subscription</Button>

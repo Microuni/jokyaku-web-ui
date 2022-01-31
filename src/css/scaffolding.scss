@@ -23,7 +23,7 @@ a {
   --app-gap: 4rem;
   display: flex;
   flex-direction: column;
-  gap: var(--app-gap);
+  // gap: var(--app-gap);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -38,10 +38,14 @@ h2 {
   font-size: theme('fontSize.4xl');
 }
 
-[stroke="#666AF6"] {
+svg [stroke="#666AF6"] {
   stroke: var(--highlight-color);
 }
 
-[fill="#666AF6"] {
+svg [fill="#666AF6"] {
+  fill: var(--highlight-color);
+}
+
+svg [fill="#68e1fd"], svg [stroke="#68e1fd"] {
   fill: var(--highlight-color);
 }

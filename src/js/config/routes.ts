@@ -8,6 +8,7 @@ import Register from "../components/Register";
 import RfidReader from "../components/RfidReader";
 import Splash from "../components/Splash";
 import Subscription from "../components/Subscription";
+import SubscriptionRequests from "../components/SubscriptionRequests";
 import TravelHistory from "../components/TravelHistory";
 import { SessionType } from "../utils/session";
 
@@ -69,6 +70,11 @@ const routes: Record<string, Route> = {
   "card-requests": {
     path: '/card-requests',
     element: () => CardRequests
+  },
+
+  "subscription-requests": {
+    path: '/subscription-requests',
+    element: () => SubscriptionRequests
   }
 };
 

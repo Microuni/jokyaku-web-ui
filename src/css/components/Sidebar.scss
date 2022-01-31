@@ -84,6 +84,7 @@
     top: 0;
     width: 100vw;
     min-height: 100vh;
+    height: 100%;
     background-image: url("../../assets/splash_bg.jpg");
     opacity: 10%;
     background-size: 100%;
@@ -98,6 +99,7 @@
     right: 0;
     top: 0;
     min-height: 100vh;
+    height: 100%;
     width: 100vw;
     background-color: var(--highlight-color);
     z-index: -2;

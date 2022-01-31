@@ -6,13 +6,11 @@
     &:nth-child(1) {
       --background-color: theme('backgroundColor.teal.100');
       --color: theme('textColor.teal.600');
-      --b-radius: var(--border-radius) 0 0 var(--border-radius);
     }
 
     &:nth-child(2) {
       --background-color: theme('backgroundColor.violet.100');
       --color: theme('textColor.violet.600');
-      --b-radius: 0 var(--border-radius) var(--border-radius) 0;
     }
   }
 
@@ -21,24 +19,26 @@
     color: var(--color);
     display: block;
     padding: 2rem;
-    border-bottom: 8px solid #00000010;
+    border: 2px solid #00000010;
     cursor: pointer;
     transition: filter 0.2s, border 0.2s;
-    border-radius: var(--b-radius);
-    filter: brightness(0.95);
+    border-radius: var(--border-radius);
+    filter: grayscale(1);
 
     input[type="radio"]:checked + & {
       border-color: currentColor;
+      filter: grayscale(0);
     }
 
     &:hover, &:focus {
-      filter: brightness(1);
+      filter: grayscale(0);
     }
   }
 
   &-container {
     display: grid;
     grid-template-columns: 50% 50%;
+    gap: 16px;
   }
 
   &-title {
