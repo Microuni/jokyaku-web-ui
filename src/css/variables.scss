@@ -1,12 +1,12 @@
 :root {
-  --highlight-color: #f582ae;
-  --highligh-control-color: #a92e5d;
+  --highlight-color: theme('colors.rose.500');
+  --highligh-control-color: theme('colors.rose.900');
   --tertiary-color: #8bd3dd;
   --text-color: #18181b;
   --control-color: #a1a1aa;
   --bg-color: #f3f4f6;
   --control-bg: #e4e4e7;
-  --contrast-color: #5c2442;
+  --contrast-color: #660725;
   --contrast-bg: #ebd3e0;
   --contrast-bg-dark: #381126;
   --block-bg: #fff;
