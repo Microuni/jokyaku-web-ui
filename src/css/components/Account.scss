@@ -1,0 +1,12 @@
+.AccountForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+
+  &-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+}

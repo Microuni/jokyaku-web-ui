@@ -81,6 +81,7 @@
     margin-top: auto;
     width: 50%;
     align-self: flex-end;
+    filter: grayscale(1) brightness(2.5);
   }
 
   &-content {

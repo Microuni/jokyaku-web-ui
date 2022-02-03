@@ -59,4 +59,7 @@ axios.interceptors.response.use(response => {
   }
 })
 
+// @ts-ignore
+window.axios = axios;
+
 export default axios;

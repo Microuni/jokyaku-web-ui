@@ -1,21 +1,10 @@
 import { UserAddIcon } from '@heroicons/react/outline';
-import { Button, FormControl, FormLabel, Input } from '@vechaiui/react';
+import { Button, FormControl, FormLabel, Input, useMessage } from '@vechaiui/react';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from '../utils/axios';
 import AuthPage from './layout/AuthPage';
 import Page from './layout/Page'
-
-function doRegister(data: any) {
-  axios.post('/register', {
-    ...data,
-    profession: '',
-    bornOn: '2000-01-01'
-  }).then(response => {
-    localStorage.setItem('token', response.data.token);
-    window.location.assign('/');
-  })
-}
 
 function Register() {
   const navigate = useNavigate();
@@ -25,6 +14,26 @@ function Register() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [passwordConfirmation, setPasswordConfirmation] = React.useState('');
+  const message = useMessage()
+
+  const doRegister = (data: any) => {
+    axios
+      .withToast({
+        call: message,
+        success: 'Welcome to Jokyaku!',
+        error: 'Invalid data.'
+      })
+      .post('/register', {
+        ...data,
+        profession: '',
+        bornOn: '2000-01-01'
+      })
+      .then(response => {
+        localStorage.setItem('token', response.data.token);
+        window.location.assign('/');
+      })
+      .finally(() => setLoading(false))
+  }
 
   return (
     <AuthPage title="Register" icon={<UserAddIcon />}>

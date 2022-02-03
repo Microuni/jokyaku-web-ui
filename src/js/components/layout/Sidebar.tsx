@@ -60,7 +60,7 @@ const actionItems: SidebarItem[] = [
   {
     title: 'Profile Info',
     icon: <UserIcon />,
-    route: '/account'
+    route: 'account'
   },
   {
     title: 'Logout',

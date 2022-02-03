@@ -1,25 +1,34 @@
-import { Button, FormControl, FormLabel, Input } from '@vechaiui/react'
+import { Button, FormControl, FormLabel, Input, useMessage } from '@vechaiui/react'
 import { LoginIcon } from '@heroicons/react/solid'
 import React from 'react'
 import axios from '../utils/axios'
 import { useNavigate } from 'react-router-dom'
 import AuthPage from './layout/AuthPage'
 
-function doLogin(email: string, password: string) {
-  axios.post('/login', {
-    email,
-    password,
-  }).then((response) => {
-    localStorage.setItem('token', response.data.token);
-    window.location.reload();
-  });
-}
-
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  const message = useMessage()
+
+  const doLogin = (email: string, password: string) => {
+    axios
+      .withToast({
+        call: message,
+        success: 'Welcome Back!',
+        error: 'Incorrect Credentials.'
+      })
+      .post('/login', {
+        email,
+        password,
+      })
+      .then((response) => {
+        localStorage.setItem('token', response.data.token);
+        window.location.reload();
+      })
+      .finally(() => setLoading(false))
+  }
 
   return (
     <AuthPage title="Login" icon={<LoginIcon />}>

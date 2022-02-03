@@ -75,7 +75,7 @@ function Subscription() {
                 session.user.currentSubscription.subscription.name,
                 `${session.user.currentSubscription.subscription.reduction}% off`,
                 <p>
-                  <strong>Expired at: </strong>
+                  <strong>Expires at: </strong>
                   {datetime(session.user.currentSubscription.expiresAt!)}
                 </p>
               ]}/>

@@ -21,9 +21,9 @@ function Header() {
                 variant="ghost"
                 className="ActorButton">
                 <span className="ActorButton-avatar">
-                  <Avatar name={session?.user?.firstName} variant='beam'/>
+                  <Avatar name={session?.user?.fullName} variant='beam'/>
                 </span>
-                <span className="ActorButton-name">{session?.user?.firstName}</span>
+                <span className="ActorButton-name">{session?.user?.firstName} {session?.user?.lastName}</span>
               </Button>
             </div>
           </Container>

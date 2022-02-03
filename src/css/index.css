@@ -12,6 +12,7 @@
 @import "components/Page.scss";
 @import "components/Sidebar.scss";
 
+@import "components/Account.scss";
 @import "components/Button.scss";
 @import "components/Form.scss";
 @import "components/PlaceholderScreen.scss";
