@@ -1,40 +1,41 @@
-import { ExclamationIcon, RefreshIcon } from '@heroicons/react/outline';
-import { CreditCardIcon, CheckIcon, XIcon } from '@heroicons/react/solid';
-import { IconButton, Tag, useMessage } from '@vechaiui/react';
-import Avatar from 'boring-avatars';
-import React from 'react';
-import CardRequest from '../models/CardRequest';
-import axios from '../utils/axios';
-import datetime from '../utils/datetime';
-import LoadingScreen from './layout/LoadingScreen';
-import Page from './layout/Page';
-import PlaceholderScreen from './layout/PlaceholderScreen';
-import UserLink from './UserLink';
-import CardVector from './vectors/CardVector';
+import { ExclamationIcon, RefreshIcon } from "@heroicons/react/outline"
+import { CreditCardIcon, CheckIcon, XIcon } from "@heroicons/react/solid"
+import { IconButton, Tag, useMessage } from "@vechaiui/react"
+import Avatar from "boring-avatars"
+import React from "react"
+import CardRequest from "../models/CardRequest"
+import axios from "../utils/axios"
+import datetime from "../utils/datetime"
+import LoadingScreen from "./layout/LoadingScreen"
+import Page from "./layout/Page"
+import PlaceholderScreen from "./layout/PlaceholderScreen"
+import UserLink from "./UserLink"
+import CardVector from "./vectors/CardVector"
 
 function CardRequests() {
   const message = useMessage()
-  const [entries, setEntries] = React.useState<CardRequest[]|null>(null)
-  const [loading, setLoading] = React.useState<string|null>(null)
+  const [entries, setEntries] = React.useState<CardRequest[] | null>(null)
+  const [loading, setLoading] = React.useState<string | null>(null)
 
   React.useEffect(() => {
     if (!entries) {
-      axios
-        .get('/passengers-service/card-requests')
-        .then(response => {
-          setEntries(response.data)
-        })
+      axios.get("/passengers-service/card-requests").then((response) => {
+        setEntries(response.data)
+      })
     }
-  }, [entries]);
+  }, [entries])
 
   const cardAction = (e: CardRequest, action: string) => {
-    setLoading(e.id+action)
+    setLoading(e.id + action)
 
     axios
       .withToast({
         call: message,
-        success: action === 'decline' ? 'Card Request Declined!' : 'Card Request Accepted!',
-        error: 'Something went wrong.. Try again later.'
+        success:
+          action === "decline"
+            ? "Card Request Declined!"
+            : "Card Request Accepted!",
+        error: "Something went wrong.. Try again later.",
       })
       .post(`/passengers-service/card-requests/${e.id}/${action}`)
       .finally(() => {
@@ -44,24 +45,22 @@ function CardRequests() {
   }
 
   return (
-    <Page
-      icon={<CreditCardIcon />}
-      title="Card Requests"
-      sidebar="true">
-
+    <Page icon={<CreditCardIcon />} title="Card Requests" sidebar="true">
       {!entries ? (
         <LoadingScreen />
-      ) : (!entries.length ? (
+      ) : !entries.length ? (
         <PlaceholderScreen
           icon={<CardVector />}
-          title="Nothing yet.. Let people know about the app!" />
+          title="Nothing yet.. Let people know about the app!"
+        />
       ) : (
         <>
           <div className="Table-precontrols">
             <IconButton
               icon={<RefreshIcon width={12} />}
-              variant='light'
-              onClick={() => setEntries(null)} />
+              variant="light"
+              onClick={() => setEntries(null)}
+            />
           </div>
           <table className="Table">
             <thead>
@@ -95,7 +94,7 @@ function CardRequests() {
                             {datetime(e.acceptedAt)}
                           </Tag.Label>
                         </Tag>
-                      ) : (e.refusedAt ? (
+                      ) : e.refusedAt ? (
                         <Tag variant="light" className="Tag--error">
                           <Tag.Label>
                             <XIcon width="12" />
@@ -109,26 +108,30 @@ function CardRequests() {
                             Pending
                           </Tag.Label>
                         </Tag>
-                      ))}
+                      )}
                     </td>
                     <td>{e.reason}</td>
                     <td>
                       {!e.refusedAt && !e.acceptedAt ? (
-                        <div className='Table-controls'>
+                        <div className="Table-controls">
                           <IconButton
-                            variant='light'
+                            variant="light"
                             icon={<CheckIcon width="12" />}
-                            color='positive'
-                            onClick={() => cardAction(e, 'confirm')}
-                            loading={loading === e.id+'confirm'}/>
+                            color="positive"
+                            onClick={() => cardAction(e, "confirm")}
+                            loading={loading === e.id + "confirm"}
+                          />
                           <IconButton
-                            variant='light'
+                            variant="light"
                             icon={<XIcon width="12" />}
-                            color='danger'
-                            onClick={() => cardAction(e, 'decline')}
-                            loading={loading === e.id+'decline'}/>
+                            color="danger"
+                            onClick={() => cardAction(e, "decline")}
+                            loading={loading === e.id + "decline"}
+                          />
                         </div>
-                      ) : ""}
+                      ) : (
+                        ""
+                      )}
                     </td>
                   </tr>
                 )
@@ -136,10 +139,9 @@ function CardRequests() {
             </tbody>
           </table>
         </>
-      ))}
-
+      )}
     </Page>
-  );
+  )
 }
 
-export default CardRequests;
+export default CardRequests

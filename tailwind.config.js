@@ -12,13 +12,13 @@ module.exports = {
         positive: colors.emerald,
         warning: colors.orange,
         danger: colors.red,
-      }
-    }
+      },
+    },
   },
   plugins: [
     require("@tailwindcss/forms"),
     require("@vechaiui/core")({
-      colors: ['positive', 'warning', 'danger']
+      colors: ["positive", "warning", "danger"],
     }),
   ],
-};
+}

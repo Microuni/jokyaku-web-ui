@@ -1,42 +1,50 @@
-import { ArrowDownIcon, RefreshIcon, TicketIcon } from '@heroicons/react/outline';
-import { IconButton, Tag } from '@vechaiui/react';
-import React from 'react'
-import TravelEntry from '../models/TravelEntry'
-import TravelVector from './vectors/TravelVector'
-import axios from '../utils/axios';
-import LoadingScreen from './layout/LoadingScreen';
-import Page from './layout/Page'
-import PlaceholderScreen from './layout/PlaceholderScreen';
-import datetime from '../utils/datetime';
+import {
+  ArrowDownIcon,
+  RefreshIcon,
+  TicketIcon,
+} from "@heroicons/react/outline"
+import { IconButton, Tag } from "@vechaiui/react"
+import React from "react"
+import TravelEntry from "../models/TravelEntry"
+import TravelVector from "./vectors/TravelVector"
+import axios from "../utils/axios"
+import LoadingScreen from "./layout/LoadingScreen"
+import Page from "./layout/Page"
+import PlaceholderScreen from "./layout/PlaceholderScreen"
+import datetime from "../utils/datetime"
 
 function TravelHistory() {
-  const [entries, setEntries] = React.useState<TravelEntry[]|null>(null)
+  const [entries, setEntries] = React.useState<TravelEntry[] | null>(null)
 
   React.useEffect(() => {
     if (!entries) {
-      axios
-      .get('/passengers-service/travel-entries')
-      .then(response => {
+      axios.get("/passengers-service/travel-entries").then((response) => {
         setEntries(response.data)
       })
     }
-  });
+  })
 
   return (
-    <Page title={entries && entries.length ? "Travel History" : null} icon={<TicketIcon />} sidebar="true">
+    <Page
+      title={entries && entries.length ? "Travel History" : null}
+      icon={<TicketIcon />}
+      sidebar="true"
+    >
       {!entries ? (
         <LoadingScreen />
-      ) : (!entries.length ? (
+      ) : !entries.length ? (
         <PlaceholderScreen
           icon={<TravelVector />}
-          title="Nothing yet.. Use your card and travel around!" />
+          title="Nothing yet.. Use your card and travel around!"
+        />
       ) : (
         <>
           <div className="Table-precontrols">
             <IconButton
               icon={<RefreshIcon width={12} />}
-              variant='light'
-              onClick={() => setEntries(null)} />
+              variant="light"
+              onClick={() => setEntries(null)}
+            />
           </div>
           <table className="Table">
             <thead>
@@ -86,7 +94,7 @@ function TravelHistory() {
             </tbody>
           </table>
         </>
-      ))}
+      )}
     </Page>
   )
 }

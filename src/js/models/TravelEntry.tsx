@@ -1,4 +1,4 @@
-import Model from "./Model";
+import Model from "./Model"
 
 export default class TravelEntry extends Model {
   id!: number

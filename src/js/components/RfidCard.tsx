@@ -1,7 +1,11 @@
-import clsx from 'clsx';
-import React, { FormEventHandler } from 'react';
+import clsx from "clsx"
+import React, { FormEventHandler } from "react"
 
-function RfidCard({ number, simulate, onInput }: {
+function RfidCard({
+  number,
+  simulate,
+  onInput,
+}: {
   number: string
   simulate: boolean
   onInput?: FormEventHandler
@@ -12,9 +16,12 @@ function RfidCard({ number, simulate, onInput }: {
         className="RfidCard-number"
         contentEditable={onInput && "true"}
         suppressContentEditableWarning={onInput && true}
-        onInput={onInput}>{number.replace(/(.{2})/g,"$1 ")}</span>
+        onInput={onInput}
+      >
+        {number.replace(/(.{2})/g, "$1 ")}
+      </span>
     </div>
-  );
+  )
 }
 
-export default RfidCard;
+export default RfidCard

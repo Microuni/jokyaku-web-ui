@@ -1,8 +1,8 @@
-import React from 'react'
-import Subscription from '../models/Subscription'
+import React from "react"
+import Subscription from "../models/Subscription"
 
 function SubscriptionSelector(props: {
-  choices: Subscription[],
+  choices: Subscription[]
   onChange: (id: number) => void
 }) {
   return (
@@ -16,16 +16,19 @@ function SubscriptionSelector(props: {
               type="radio"
               name="subscription"
               className="sr-only"
-              aria-label={`${item.name} ${item.reduction}% Reduction`}/>
+              aria-label={`${item.name} ${item.reduction}% Reduction`}
+            />
 
             <label
               htmlFor={`subscription[${item.id}]`}
-              className="SubscriptionSelector-label" aria-hidden="true"
-              onClick={() => props.onChange(item.id)}>
-
+              className="SubscriptionSelector-label"
+              aria-hidden="true"
+              onClick={() => props.onChange(item.id)}
+            >
               <h4 className="SubscriptionSelector-title">{item.name}</h4>
-              <p className="SubscriptionSelector-desc">{item.reduction}% Reduction</p>
-
+              <p className="SubscriptionSelector-desc">
+                {item.reduction}% Reduction
+              </p>
             </label>
           </div>
         ))}

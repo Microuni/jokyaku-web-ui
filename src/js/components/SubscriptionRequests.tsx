@@ -1,40 +1,45 @@
-import { ExclamationIcon, RefreshIcon } from '@heroicons/react/outline';
-import { CheckIcon, XIcon, StarIcon } from '@heroicons/react/solid';
-import { IconButton, Tag, useMessage } from '@vechaiui/react';
-import Avatar from 'boring-avatars';
-import React from 'react';
-import SubscriptionRequest from '../models/SubscriptionRequest';
-import axios from '../utils/axios';
-import datetime from '../utils/datetime';
-import LoadingScreen from './layout/LoadingScreen';
-import Page from './layout/Page';
-import PlaceholderScreen from './layout/PlaceholderScreen';
-import UserLink from './UserLink';
-import SubscriptionVector from './vectors/SubscriptionVector';
+import { ExclamationIcon, RefreshIcon } from "@heroicons/react/outline"
+import { CheckIcon, XIcon, StarIcon } from "@heroicons/react/solid"
+import { IconButton, Tag, useMessage } from "@vechaiui/react"
+import Avatar from "boring-avatars"
+import React from "react"
+import SubscriptionRequest from "../models/SubscriptionRequest"
+import axios from "../utils/axios"
+import datetime from "../utils/datetime"
+import LoadingScreen from "./layout/LoadingScreen"
+import Page from "./layout/Page"
+import PlaceholderScreen from "./layout/PlaceholderScreen"
+import UserLink from "./UserLink"
+import SubscriptionVector from "./vectors/SubscriptionVector"
 
 function SubscriptionRequests() {
   const message = useMessage()
-  const [entries, setEntries] = React.useState<SubscriptionRequest[]|null>(null)
-  const [loading, setLoading] = React.useState<string|null>(null)
+  const [entries, setEntries] = React.useState<SubscriptionRequest[] | null>(
+    null
+  )
+  const [loading, setLoading] = React.useState<string | null>(null)
 
   React.useEffect(() => {
     if (!entries) {
       axios
-        .get('/passengers-service/subscription-requests')
-        .then(response => {
+        .get("/passengers-service/subscription-requests")
+        .then((response) => {
           setEntries(response.data)
         })
     }
-  }, [entries]);
+  }, [entries])
 
   const subAction = (e: SubscriptionRequest, action: string) => {
-    setLoading(e.id+action)
+    setLoading(e.id + action)
 
     axios
       .withToast({
         call: message,
-        success: action === 'decline' ? 'Subscription Request Declined!' : 'Subscription Request Accepted!',
-        error: 'Something went wrong.. Try again later.'
+        success:
+          action === "decline"
+            ? "Subscription Request Declined!"
+            : "Subscription Request Accepted!",
+        error: "Something went wrong.. Try again later.",
       })
       .post(`/passengers-service/subscription-requests/${e.id}/${action}`)
       .finally(() => {
@@ -44,24 +49,22 @@ function SubscriptionRequests() {
   }
 
   return (
-    <Page
-      icon={<StarIcon />}
-      title="Subscription Requests"
-      sidebar="true">
-
+    <Page icon={<StarIcon />} title="Subscription Requests" sidebar="true">
       {!entries ? (
         <LoadingScreen />
-      ) : (!entries.length ? (
+      ) : !entries.length ? (
         <PlaceholderScreen
           icon={<SubscriptionVector />}
-          title="Nothing yet.. Let people know about the app!" />
+          title="Nothing yet.. Let people know about the app!"
+        />
       ) : (
         <>
           <div className="Table-precontrols">
             <IconButton
               icon={<RefreshIcon width={12} />}
-              variant='light'
-              onClick={() => setEntries(null)} />
+              variant="light"
+              onClick={() => setEntries(null)}
+            />
           </div>
           <table className="Table">
             <thead>
@@ -97,7 +100,7 @@ function SubscriptionRequests() {
                             {datetime(e.acceptedAt)}
                           </Tag.Label>
                         </Tag>
-                      ) : (e.refusedAt ? (
+                      ) : e.refusedAt ? (
                         <Tag variant="light" className="Tag--error">
                           <Tag.Label>
                             <XIcon width="12" />
@@ -111,26 +114,30 @@ function SubscriptionRequests() {
                             Pending
                           </Tag.Label>
                         </Tag>
-                      ))}
+                      )}
                     </td>
                     <td>{e.reason}</td>
                     <td>
                       {!e.refusedAt && !e.acceptedAt ? (
-                        <div className='Table-controls'>
+                        <div className="Table-controls">
                           <IconButton
-                            variant='light'
+                            variant="light"
                             icon={<CheckIcon width="12" />}
-                            color='positive'
-                            onClick={() => subAction(e, 'confirm')}
-                            loading={loading === e.id+'confirm'}/>
+                            color="positive"
+                            onClick={() => subAction(e, "confirm")}
+                            loading={loading === e.id + "confirm"}
+                          />
                           <IconButton
-                            variant='light'
+                            variant="light"
                             icon={<XIcon width="12" />}
-                            color='danger'
-                            onClick={() => subAction(e, 'decline')}
-                            loading={loading === e.id+'decline'}/>
+                            color="danger"
+                            onClick={() => subAction(e, "decline")}
+                            loading={loading === e.id + "decline"}
+                          />
                         </div>
-                      ) : ""}
+                      ) : (
+                        ""
+                      )}
                     </td>
                   </tr>
                 )
@@ -138,10 +145,9 @@ function SubscriptionRequests() {
             </tbody>
           </table>
         </>
-      ))}
-
+      )}
     </Page>
-  );
+  )
 }
 
-export default SubscriptionRequests;
+export default SubscriptionRequests

@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import React, { ComponentProps } from "react"
 
 interface CardBoxProps extends ComponentProps<any> {
   card: any
@@ -19,12 +19,10 @@ function CardBox(props: CardBoxProps) {
           </ul>
         )}
 
-        <div className="CardBox-controls">
-          {props.controls}
-        </div>
+        <div className="CardBox-controls">{props.controls}</div>
       </div>
     </div>
-  );
+  )
 }
 
-export default CardBox;
+export default CardBox

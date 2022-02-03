@@ -1,17 +1,17 @@
 .Tag {
   &--success {
-    background-color: theme('backgroundColor.green.100');
-    color: theme('textColor.green.700');
+    background-color: theme("backgroundColor.green.100");
+    color: theme("textColor.green.700");
   }
 
   &--error {
-    background-color: theme('backgroundColor.red.100');
-    color: theme('textColor.red.700');
+    background-color: theme("backgroundColor.red.100");
+    color: theme("textColor.red.700");
   }
 
   &--warning {
-    background-color: theme('backgroundColor.yellow.100');
-    color: theme('textColor.yellow.700');
+    background-color: theme("backgroundColor.yellow.100");
+    color: theme("textColor.yellow.700");
   }
 }
 

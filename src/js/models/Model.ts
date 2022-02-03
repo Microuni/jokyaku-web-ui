@@ -1,3 +1,3 @@
 export default class Model {
-  [key: string]: any;
+  [key: string]: any
 }

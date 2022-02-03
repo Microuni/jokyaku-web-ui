@@ -4,13 +4,13 @@
 
   &-item {
     &:nth-child(1) {
-      --background-color: theme('backgroundColor.teal.100');
-      --color: theme('textColor.teal.600');
+      --background-color: theme("backgroundColor.teal.100");
+      --color: theme("textColor.teal.600");
     }
 
     &:nth-child(2) {
-      --background-color: theme('backgroundColor.violet.100');
-      --color: theme('textColor.violet.600');
+      --background-color: theme("backgroundColor.violet.100");
+      --color: theme("textColor.violet.600");
     }
   }
 
@@ -30,7 +30,8 @@
       filter: grayscale(0);
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       filter: grayscale(0);
     }
   }

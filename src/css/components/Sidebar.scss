@@ -16,7 +16,8 @@
       color: var(--control-color);
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: var(--button-hover-bg, transparent);
 
       .btn-icon {
@@ -45,7 +46,8 @@
         background-color: var(--contrast-bg);
         box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 
-        &, &-icon {
+        &,
+        &-icon {
           color: var(--contrast-color);
         }
       }

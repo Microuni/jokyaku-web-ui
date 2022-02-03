@@ -1,61 +1,68 @@
-import { DocumentTextIcon, StarIcon } from '@heroicons/react/outline'
-import { Button } from '@vechaiui/react'
-import React from 'react'
-import SubscriptionRequest from '../models/SubscriptionRequest'
-import axios from '../utils/axios'
-import SessionContext from '../utils/session'
-import LoadingScreen from './layout/LoadingScreen'
-import Page from './layout/Page'
-import PlaceholderScreen from './layout/PlaceholderScreen'
-import SubscriptionSelector from './SubscriptionSelector'
-import SubscriptionType from '../models/Subscription'
-import SubscriptionVector from './vectors/SubscriptionVector'
-import SubscriptionRequestVector from './vectors/SubscriptionRequestVector'
-import CardBox from './CardBox'
-import datetime from '../utils/datetime'
+import { DocumentTextIcon, StarIcon } from "@heroicons/react/outline"
+import { Button } from "@vechaiui/react"
+import React from "react"
+import SubscriptionRequest from "../models/SubscriptionRequest"
+import axios from "../utils/axios"
+import SessionContext from "../utils/session"
+import LoadingScreen from "./layout/LoadingScreen"
+import Page from "./layout/Page"
+import PlaceholderScreen from "./layout/PlaceholderScreen"
+import SubscriptionSelector from "./SubscriptionSelector"
+import SubscriptionType from "../models/Subscription"
+import SubscriptionVector from "./vectors/SubscriptionVector"
+import SubscriptionRequestVector from "./vectors/SubscriptionRequestVector"
+import CardBox from "./CardBox"
+import datetime from "../utils/datetime"
 
 function Subscription() {
-  const session = React.useContext(SessionContext);
-  const [isLoading, setIsLoading] = React.useState(!session.user?.currentSubscription);
-  const [subscriptions, setSubscriptions] = React.useState<SubscriptionType[]|null>(null);
-  const [selectedSub, setSelectedSub] = React.useState<number>(0);
-  const [currentRequest, setCurrentRequest] = React.useState<SubscriptionRequest|null|undefined>();
+  const session = React.useContext(SessionContext)
+  const [isLoading, setIsLoading] = React.useState(
+    !session.user?.currentSubscription
+  )
+  const [subscriptions, setSubscriptions] = React.useState<
+    SubscriptionType[] | null
+  >(null)
+  const [selectedSub, setSelectedSub] = React.useState<number>(0)
+  const [currentRequest, setCurrentRequest] = React.useState<
+    SubscriptionRequest | null | undefined
+  >()
 
   React.useEffect(() => {
     if (!subscriptions && !session.user?.currentSubscription) {
-      setIsLoading(true);
+      setIsLoading(true)
 
-      axios
-        .get('/passengers-service/subscriptions')
-        .then((response) => {
-          // @TODO remove timeout, it's just for deving
-          setTimeout(() => {
-            setSubscriptions(response.data);
-            setIsLoading(false);
-          }, 500)
-        })
+      axios.get("/passengers-service/subscriptions").then((response) => {
+        // @TODO remove timeout, it's just for deving
+        setTimeout(() => {
+          setSubscriptions(response.data)
+          setIsLoading(false)
+        }, 500)
+      })
     }
 
-    if (typeof currentRequest === "undefined" && !session.user?.currentSubscription) {
-      setIsLoading(true);
+    if (
+      typeof currentRequest === "undefined" &&
+      !session.user?.currentSubscription
+    ) {
+      setIsLoading(true)
 
       axios
-        .get('/passengers-service/subscription-requests', {
+        .get("/passengers-service/subscription-requests", {
           params: {
-            userId: session.user!.id
-          }
+            userId: session.user!.id,
+          },
         })
         .then((response) => {
           // @TODO remove timeout, it's just for deving
           setTimeout(() => {
-            setCurrentRequest(response.data[0] || null);
-            setIsLoading(false);
+            setCurrentRequest(response.data[0] || null)
+            setIsLoading(false)
           }, 500)
         })
     }
-  });
+  })
 
-  let currentRequestFor: SubscriptionType|undefined;
+  let currentRequestFor: SubscriptionType | undefined
 
   return (
     <SessionContext.Consumer>
@@ -63,11 +70,11 @@ function Subscription() {
         <Page
           icon={session.user?.currentSubscription && <StarIcon />}
           title={session.user?.currentSubscription && "Subscription"}
-          sidebar="true">
-
+          sidebar="true"
+        >
           {isLoading ? (
             <LoadingScreen />
-          ) : (session.user?.currentSubscription ? (
+          ) : session.user?.currentSubscription ? (
             <CardBox
               card={<SubscriptionVector />}
               details={[
@@ -77,15 +84,21 @@ function Subscription() {
                 <p>
                   <strong>Expires at: </strong>
                   {datetime(session.user.currentSubscription.expiresAt!)}
-                </p>
-              ]}/>
-          ) : (currentRequest && !currentRequest.refused_at ? (
+                </p>,
+              ]}
+            />
+          ) : currentRequest && !currentRequest.refused_at ? (
             <PlaceholderScreen
               icon={<SubscriptionRequestVector />}
-              title="You have a pending subscription request for:">
+              title="You have a pending subscription request for:"
+            >
               <div className="Subscription-pendingRequest">
-                <h4 className="Subscription-pendingRequest-name">{currentRequest.subscription!.name}</h4>
-                <p className="Subscription-pendingRequest-desc">{currentRequest.subscription!.reduction}% Off</p>
+                <h4 className="Subscription-pendingRequest-name">
+                  {currentRequest.subscription!.name}
+                </h4>
+                <p className="Subscription-pendingRequest-desc">
+                  {currentRequest.subscription!.reduction}% Off
+                </p>
                 <p className="Subscription-pendingRequest-requestedAt">
                   <strong>Requested: </strong>
                   {datetime(currentRequest.requestedAt)}
@@ -95,29 +108,32 @@ function Subscription() {
           ) : (
             <PlaceholderScreen
               icon={<SubscriptionVector />}
-              title="No subscriptions associated with your account. Choose one of the following:">
-
+              title="No subscriptions associated with your account. Choose one of the following:"
+            >
               <SubscriptionSelector
                 choices={subscriptions!}
-                onChange={id => setSelectedSub(id)}/>
+                onChange={(id) => setSelectedSub(id)}
+              />
 
               <Button
                 variant="light"
                 disabled={selectedSub === 0}
                 onClick={() => {
-                  setIsLoading(true);
-                  axios.post('/passengers-service/subscription-requests', {
-                    subscriptionId: selectedSub
-                  }).then((response) => {
-                    setCurrentRequest(response.data)
-                    setIsLoading(false);
-                  })
-                }}>Request Subscription</Button>
-
+                  setIsLoading(true)
+                  axios
+                    .post("/passengers-service/subscription-requests", {
+                      subscriptionId: selectedSub,
+                    })
+                    .then((response) => {
+                      setCurrentRequest(response.data)
+                      setIsLoading(false)
+                    })
+                }}
+              >
+                Request Subscription
+              </Button>
             </PlaceholderScreen>
-            )
-          ))}
-
+          )}
         </Page>
       )}
     </SessionContext.Consumer>

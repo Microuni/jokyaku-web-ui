@@ -14,6 +14,6 @@ export default class User extends Model {
   currentSubscription?: PassengerSubscription
 
   get fullName(): string {
-    return this.firstName + " " + this.lastName;
+    return this.firstName + " " + this.lastName
   }
 }

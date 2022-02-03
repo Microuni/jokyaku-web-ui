@@ -1,5 +1,8 @@
 .App {
-  &--login, &--register, &--splash, &--rfid {
+  &--login,
+  &--register,
+  &--splash,
+  &--rfid {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -8,7 +11,9 @@
     z-index: 0;
   }
 
-  &--login, &--register, &--rfid  {
+  &--login,
+  &--register,
+  &--rfid {
     --header-height: 150px;
 
     .Header {
@@ -27,7 +32,8 @@
     justify-content: center;
     height: 100vh;
 
-    .Header, .Footer {
+    .Header,
+    .Footer {
       display: none;
     }
 
@@ -90,7 +96,8 @@
     box-shadow: var(--box-shadow-high);*/
   }
 
-  &-info, &-content {
+  &-info,
+  &-content {
     padding: 4.45rem;
   }
 

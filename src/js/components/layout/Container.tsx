@@ -1,13 +1,13 @@
-import clsx from 'clsx';
-import React from 'react'
+import clsx from "clsx"
+import React from "react"
 
-type ContainerProps = any;
+type ContainerProps = any
 
 function Container(props: ContainerProps) {
-  const { children, className, ...attrs } = props;
+  const { children, className, ...attrs } = props
 
   return (
-    <div className={clsx('Container', className)} {...attrs}>
+    <div className={clsx("Container", className)} {...attrs}>
       {children}
     </div>
   )
