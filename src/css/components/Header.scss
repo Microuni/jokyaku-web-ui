@@ -3,7 +3,6 @@
     height: var(--header-height);
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--control-bg);
   }
 
   &-secondary {
@@ -15,10 +14,32 @@
       height: 40px;
     }
   }
+
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: translateX(-48px);
+    z-index: -1;
+  }
+
+  &::before {
+    height: var(--header-height);
+    background-color: var(--header-bg);
+  }
+
+  &::after {
+    height: 2px;
+    top: var(--header-height);
+    background-color: var(--control-bg);
+  }
 }
 
 .ActorButton {
-  gap: 8px;
+  gap: 16px;
+  display: flex;
+  align-items: center;
+  color: var(--control-color);
 
   &-avatar {
     width: 30px;

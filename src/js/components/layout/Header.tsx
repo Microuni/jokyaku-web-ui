@@ -17,14 +17,14 @@ function Header() {
               </h1>
             </div>
             <div className="Header-secondary">
-              <Button variant="ghost" className="ActorButton">
+              <span className="ActorButton">
                 <span className="ActorButton-avatar">
                   <Avatar name={session?.user?.fullName} variant="beam" />
                 </span>
                 <span className="ActorButton-name">
                   {session?.user?.firstName} {session?.user?.lastName}
                 </span>
-              </Button>
+              </span>
             </div>
           </Container>
         </header>

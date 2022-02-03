@@ -77,34 +77,25 @@ function Subscription() {
           ) : session.user?.currentSubscription ? (
             <CardBox
               card={<SubscriptionVector />}
+              top="You have an active subscription"
+              topColor="positive"
               details={[
-                "You have an active subscription",
-                session.user.currentSubscription.subscription.name,
-                `${session.user.currentSubscription.subscription.reduction}% off`,
-                <p>
-                  <strong>Expires at: </strong>
-                  {datetime(session.user.currentSubscription.expiresAt!)}
-                </p>,
+                ["Name", session.user.currentSubscription.subscription.name],
+                ["Reduction", `${session.user.currentSubscription.subscription.reduction}% off`],
+                ["Expires At", datetime(session.user.currentSubscription.expiresAt!)]
               ]}
             />
           ) : currentRequest && !currentRequest.refused_at ? (
-            <PlaceholderScreen
-              icon={<SubscriptionRequestVector />}
-              title="You have a pending subscription request for:"
-            >
-              <div className="Subscription-pendingRequest">
-                <h4 className="Subscription-pendingRequest-name">
-                  {currentRequest.subscription!.name}
-                </h4>
-                <p className="Subscription-pendingRequest-desc">
-                  {currentRequest.subscription!.reduction}% Off
-                </p>
-                <p className="Subscription-pendingRequest-requestedAt">
-                  <strong>Requested: </strong>
-                  {datetime(currentRequest.requestedAt)}
-                </p>
-              </div>
-            </PlaceholderScreen>
+            <CardBox
+              card={<SubscriptionVector />}
+              top="You have a pending subscription request"
+              topColor="warning"
+              details={[
+                ["Name", currentRequest.subscription!.name],
+                ["Reduction", `${currentRequest.subscription!.reduction}% off`],
+                ["Expires At", datetime(datetime(currentRequest.requestedAt))]
+              ]}
+            />
           ) : (
             <PlaceholderScreen
               icon={<SubscriptionVector />}

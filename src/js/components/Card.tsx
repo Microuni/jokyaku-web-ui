@@ -58,7 +58,7 @@ function Card() {
           {user!.rfid ? (
             <CardBox
               card={<RfidCard number={user!.rfid} simulate={false} />}
-              details={["Requested At: --/--", "Expires At: --/--"]}
+              details={[["Requested At", "--/--"], ["Expires At", "--/--"]]}
               controls={[
                 <Button
                   variant="light"
@@ -76,13 +76,10 @@ function Card() {
           ) : cardRequest ? (
             <CardBox
               card={<RfidCard number="-- -- -- -- --" simulate={false} />}
-              details={[`Request At: ${datetime(cardRequest?.requestedAt)}`]}
-              controls={[
-                <Alert variant="subtle" color="warning">
-                  Pending review. You will be notified of an answer as soon as
-                  possible.
-                </Alert>,
-              ]}
+              details={[["Request At", datetime(cardRequest?.requestedAt)]]}
+              top="Pending review. You will be notified of an answer as soon as
+              possible."
+              topColor="warning"
             />
           ) : (
             <PlaceholderScreen

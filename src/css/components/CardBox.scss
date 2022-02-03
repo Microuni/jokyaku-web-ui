@@ -1,10 +1,27 @@
 .CardBox {
-  display: grid;
-  grid-template-columns: 35% 1fr;
-  gap: 32px;
   background-color: var(--block-bg);
   border-radius: var(--border-radius);
   border-bottom: 1px solid var(--control-bg);
+
+  &-header {
+    padding: 8px 16px;
+    border: none;
+    border-bottom: 2px solid;
+    font-size: 0.85rem;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border-color: var(--bg-color) !important;
+    color: rgb(249 115 22 / var(--tw-border-opacity));
+
+    &[data-color="positive"] {
+      color: rgb(16 185 129 / var(--tw-border-opacity))
+    }
+  }
+
+  &-container {
+    display: grid;
+    grid-template-columns: 35% 1fr;
+    gap: 32px;
+  }
 
   &-content {
     display: flex;
@@ -21,9 +38,29 @@
 
   &-card {
     padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     svg {
-      max-height: 150px;
+      max-height: 125px;
     }
+  }
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &-item-label {
+    color: var(--control-color);
+    font-size: 0.85rem;
+  }
+
+  &-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 }
