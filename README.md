@@ -6,6 +6,5 @@ Part of the Jokyaku project for a passenger transport management application.
 
 This repository holds the ReactJs code for the web UI.
 
-![Screenshot from 2022-02-03 22-45-44](https://user-images.githubusercontent.com/20267363/153300856-f52ee203-0caf-4f4c-86cd-fba849ee2136.png)
-
-![Screenshot from 2022-02-03 23-40-18](https://user-images.githubusercontent.com/20267363/153300928-82dea76b-0e28-4309-85a8-3d26dbe0da6a.png)
+![screely-1644446493910](https://user-images.githubusercontent.com/20267363/153302837-cdcdba69-ca26-4015-9d32-9ff85f98c458.png)
+![screely-1644446457801](https://user-images.githubusercontent.com/20267363/153302890-0b5e06d6-2149-4a9e-9c46-bdd69d37c982.png)
