@@ -15,7 +15,6 @@ import {
   Input,
   useMessage,
 } from "@vechaiui/react"
-import clsx from "clsx"
 import axios from "../utils/axios"
 import { Disclosure } from "@headlessui/react"
 import RfidCard from "./RfidCard"
@@ -33,6 +32,11 @@ function RfidReader() {
   const submit = () => {
     setTimeout(() => {
       axios
+        .withToast({
+          call: message,
+          success: "RFID Card valid, transaction saved.",
+          error: "RFID Card invalid.",
+        })
         .post("/passengers-service/validate", {
           rfid: number,
           departedFrom,
@@ -40,20 +44,6 @@ function RfidReader() {
           fee,
           busNumber,
           routeNumber,
-        })
-        .then((response) => {
-          message({
-            message: "RFID Card valid, transaction saved.",
-            status: "success",
-            position: "bottom-right",
-          })
-        })
-        .catch(() => {
-          message({
-            message: "RFID Card invalid.",
-            status: "error",
-            position: "bottom-right",
-          })
         })
     }, 1500)
   }

@@ -12,10 +12,15 @@ type PageProps =
       desc?: string
       icon?: string
       sidebar?: boolean
+      minimal?: boolean
     }
 
 function Page(props: PageProps) {
-  const { children, className, sidebar, title, icon, ...attrs } = props
+  const { children, className, minimal, sidebar, title, icon, ...attrs } = props
+
+  React.useEffect(() => {
+    document.title = title || ''
+  }, [title]);
 
   return (
     <div className={clsx("Page", className)} {...attrs}>
@@ -24,7 +29,7 @@ function Page(props: PageProps) {
 
         <div className="Page-content">
           <Header />
-          {title && (
+          {title && !minimal && (
             <div className="Page-content-header">
               <h2>
                 {icon}

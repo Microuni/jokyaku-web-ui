@@ -80,8 +80,8 @@ function Subscription() {
               top="You have an active subscription"
               topColor="positive"
               details={[
-                ["Name", session.user.currentSubscription.subscription.name],
-                ["Reduction", `${session.user.currentSubscription.subscription.reduction}% off`],
+                ["Name", session.user.currentSubscription.subscription?.name],
+                ["Reduction", `${session.user.currentSubscription.subscription?.reduction}% off`],
                 ["Expires At", datetime(session.user.currentSubscription.expiresAt!)]
               ]}
             />

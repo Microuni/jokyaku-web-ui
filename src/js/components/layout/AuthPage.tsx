@@ -10,7 +10,7 @@ type AuthPageProps = {
 
 function AuthPage(props: AuthPageProps) {
   return (
-    <Page className="AuthPage">
+    <Page className="AuthPage" title={props.title} minimal={true}>
       <div className="AuthPage-info">
         <div className="AuthPage-title">
           <div className="AuthPage-title-icon" aria-hidden="true">

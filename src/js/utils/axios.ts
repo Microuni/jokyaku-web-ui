@@ -60,6 +60,8 @@ axios.interceptors.response.use(
 
       delete axios.defaults.toast
     }
+
+    return Promise.reject(error)
   }
 )
 

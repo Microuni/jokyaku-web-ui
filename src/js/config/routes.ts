@@ -70,16 +70,19 @@ const routes: Record<string, Route> = {
   "card-requests": {
     path: "/card-requests",
     element: () => CardRequests,
+    auth: true,
   },
 
   "subscription-requests": {
     path: "/subscription-requests",
     element: () => SubscriptionRequests,
+    auth: true,
   },
 
   account: {
     path: "/account",
     element: () => Account,
+    auth: true,
   },
 }
 
